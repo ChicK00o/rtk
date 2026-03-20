@@ -17,26 +17,16 @@ export interface ModelInfo {
 export function isGptOrGeminiFamily(model: ModelInfo | null | undefined): boolean {
   if (!model) return false
 
-  const providerID = model.providerID?.toLowerCase() ?? ""
-  const modelID = model.modelID?.toLowerCase() ?? ""
+  const modelID = model.modelID?.toLowerCase().trim() ?? ""
 
-  if (providerID === "" && modelID === "") return false
+  if (modelID === "") return false
 
-  const isGptProvider = providerID.includes("openai") ||
-                        providerID.includes("codex")
-
-  const isGptModel = modelID.startsWith("gpt-") ||
-                     modelID.startsWith("o1-") ||
-                     modelID.startsWith("o3-") ||
-                     modelID.startsWith("codex-")
-
-  if (isGptProvider || isGptModel) return true
-
-  const isGeminiProvider = providerID.includes("gemini")
-
-  const isGeminiModel = modelID.startsWith("gemini-")
-
-  return isGeminiProvider || isGeminiModel
+  return modelID.includes("claude") ||
+         modelID.includes("gpt") ||
+         modelID.includes("codex") ||
+         modelID.includes("gemini") ||
+         modelID.includes("o1") ||
+         modelID.includes("o3")
 }
 
 export const RtkOpenCodePlugin: Plugin = async ({ $ }) => {

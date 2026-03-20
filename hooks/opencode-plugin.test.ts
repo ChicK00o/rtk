@@ -99,15 +99,20 @@ describe("isGptOrGeminiFamily", () => {
     })
   })
 
-  describe("Non-GPT/Gemini models (should return false)", () => {
-    it("should reject claude-3-opus with Anthropic provider", () => {
+  describe("Non-target models (should return false)", () => {
+    it("should detect claude-3-opus with Anthropic provider", () => {
       const model: ModelInfo = { providerID: "anthropic", modelID: "claude-3-opus" }
-      expect(isGptOrGeminiFamily(model)).toBe(false)
+      expect(isGptOrGeminiFamily(model)).toBe(true)
     })
 
-    it("should reject claude-3.5-sonnet with Anthropic provider", () => {
+    it("should detect claude-3.5-sonnet with Anthropic provider", () => {
       const model: ModelInfo = { providerID: "anthropic", modelID: "claude-3.5-sonnet" }
-      expect(isGptOrGeminiFamily(model)).toBe(false)
+      expect(isGptOrGeminiFamily(model)).toBe(true)
+    })
+
+    it("should detect claude model from arbitrary provider", () => {
+      const model: ModelInfo = { providerID: "antigravity", modelID: "claude-3.7-sonnet" }
+      expect(isGptOrGeminiFamily(model)).toBe(true)
     })
 
     it("should reject qwen-72b with Alibaba provider", () => {
@@ -177,7 +182,7 @@ describe("isGptOrGeminiFamily", () => {
 
     it("should handle missing modelID", () => {
       const model: ModelInfo = { providerID: "openai" }
-      expect(isGptOrGeminiFamily(model)).toBe(true)
+      expect(isGptOrGeminiFamily(model)).toBe(false)
     })
 
     it("should handle empty ModelInfo object", () => {
@@ -195,10 +200,10 @@ describe("isGptOrGeminiFamily", () => {
       expect(isGptOrGeminiFamily(model)).toBe(true)
     })
 
-    it("should handle providerID case insensitivity (openai vs OPENAI)", () => {
-      const model1: ModelInfo = { providerID: "openai", modelID: "gpt-4" }
-      const model2: ModelInfo = { providerID: "OPENAI", modelID: "gpt-4" }
-      const model3: ModelInfo = { providerID: "OpenAI", modelID: "gpt-4" }
+    it("should handle modelID case insensitivity", () => {
+      const model1: ModelInfo = { providerID: "custom", modelID: "gpt-4" }
+      const model2: ModelInfo = { providerID: "custom", modelID: "GPT-4" }
+      const model3: ModelInfo = { providerID: "custom", modelID: "GpT-4" }
       expect(isGptOrGeminiFamily(model1)).toBe(true)
       expect(isGptOrGeminiFamily(model2)).toBe(true)
       expect(isGptOrGeminiFamily(model3)).toBe(true)
@@ -250,14 +255,14 @@ describe("isGptOrGeminiFamily", () => {
   })
 
   describe("Partial matches", () => {
-    it("should not match modelIDs containing gpt as substring", () => {
+    it("should match modelIDs containing gpt as substring", () => {
       const model: ModelInfo = { providerID: "custom", modelID: "my-gpt-model" }
-      expect(isGptOrGeminiFamily(model)).toBe(false)
+      expect(isGptOrGeminiFamily(model)).toBe(true)
     })
 
-    it("should not match modelIDs containing gemini as substring", () => {
+    it("should match modelIDs containing gemini as substring", () => {
       const model: ModelInfo = { providerID: "custom", modelID: "my-gemini-model" }
-      expect(isGptOrGeminiFamily(model)).toBe(false)
+      expect(isGptOrGeminiFamily(model)).toBe(true)
     })
 
     it("should match exact gpt prefix at start", () => {
