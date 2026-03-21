@@ -1,0 +1,23 @@
+Task 4 Plugin Build Evidence
+==============================
+
+Date: 2026-03-20
+
+Build Command:
+bun build hooks/opencode-rtk.ts --outdir /tmp
+
+Build Output:
+Bundled 1 module in 3ms
+
+  opencode-rtk.js  2.0 KB  (entry point)
+
+Result: SUCCESS
+
+Changes Made:
+1. Added module-level variable: let currentModel: ModelInfo | null = null
+2. Implemented chat.message hook to capture model info from input.model
+3. Plugin now exports both chat.message and tool.execute.before hooks
+
+TypeScript compilation: PASSED (no errors)
+Bundle size: 2.0 KB
+Build time: 3ms

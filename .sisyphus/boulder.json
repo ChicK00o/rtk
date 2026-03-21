@@ -1,0 +1,27 @@
+{
+  "active_plan": "/home/ubuntu/projects/rtk/.sisyphus/plans/opencode-model-aware-rtk.md",
+  "started_at": "2026-03-20T08:49:43.477Z",
+  "session_ids": [
+    "ses_2f5905645ffeMCfXIwIZcdaBBW",
+    "ses_2f58ef5b4ffeilOSegw2uN9lTR",
+    "ses_2f58ef5a4ffe5vq4oXEN4iOZFm",
+    "ses_2f5898d3cffeRmNQo6yxs3cApg",
+    "ses_2f585111effeBF9ZVNK1qeCDUd",
+    "ses_2f582c90affe4T6v2OZ9ZO1cXT",
+    "ses_2f57e1ecdffeQc107XNL4KbIRU",
+    "ses_2f575d857ffeHo1aimXVtQ04T0",
+    "ses_2f572e105ffeusjCQzY5jbmPBt",
+    "ses_2f56cf61effeNL96U7DC2b413T",
+    "ses_2f56cf61dffesMRdnaYnOc4sZ5",
+    "ses_2f56cf620ffeBGfEAilwWynCPM",
+    "ses_2f5471584ffe53zdaYQFfteKok",
+    "ses_2f5471436ffe6qIVZaQ4XLm288",
+    "ses_2f5471894ffd14doTf1i9e0egS",
+    "ses_2f5373ff4ffeLL7KRq5zOxXUCd",
+    "ses_2f535e6f3ffek55XTUT1B2gAff",
+    "ses_2f36dd71bffeukiQomp1WdjUCR"
+  ],
+  "plan_name": "opencode-model-aware-rtk",
+  "agent": "atlas",
+  "task_sessions": {}
+}

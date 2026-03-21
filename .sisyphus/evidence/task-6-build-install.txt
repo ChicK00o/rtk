@@ -1,0 +1,48 @@
+# Task 6: Build and Install Verification
+
+## 1. Working Directory Confirmation
+- Directory: /home/ubuntu/projects/rtk
+- Git branch: dev
+
+## 2. Cargo Build Result
+- Command: cargo build
+- Status: SUCCESS
+- Build time: 50.15s
+- Output: Finished `dev` profile [unoptimized + debuginfo] target(s)
+
+## 3. Plugin Installation
+- Command: ./target/debug/rtk init -g --opencode
+- Status: SUCCESS
+- Output:
+```
+[rtk] /!\ No hook installed — run `rtk init -g` for automatic token savings
+
+OpenCode plugin installed (global).
+
+  OpenCode: /home/ubuntu/.config/opencode/plugins/rtk.ts
+  Restart OpenCode. Test with: git status
+```
+
+## 4. Installed Plugin Verification
+- Location: /home/ubuntu/.config/opencode/plugins/rtk.ts
+- Model-aware code detected (grep results):
+
+Line 10: let currentModel: ModelInfo | null = null
+Line 12: export interface ModelInfo {
+Line 17: export function isGptOrGeminiFamily(model: ModelInfo | null | undefined): boolean {
+Line 57: currentModel = {
+Line 68: if (!isGptOrGeminiFamily(currentModel)) {
+
+## 5. Acceptance Criteria Check
+✅ cargo build succeeds
+✅ rtk init -g --opencode installs the plugin
+✅ Installed plugin contains model-aware code (isGptOrGeminiFamily)
+
+## 6. Build Details
+The plugin is embedded via include_str! in src/init.rs line 16:
+```rust
+const OPENCODE_PLUGIN: &str = include_str!("../hooks/opencode-rtk.ts");
+```
+
+Since hooks/opencode-rtk.ts was modified with model-aware logic, the new content
+was automatically embedded during compilation.

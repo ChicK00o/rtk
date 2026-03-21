@@ -1,0 +1,38 @@
+TASK 1: TypeScript Test Infrastructure for RTK OpenCode Plugin
+================================================================
+
+CREATED FILES:
+--------------
+1. hooks/package.json
+   - Minimal bun test configuration
+   - Dependencies: @opencode-ai/plugin@1.2.27, typescript@5.9.3
+   - Test script: bun test
+
+2. hooks/tsconfig.json
+   - TypeScript configuration for ES2022 target
+   - Strict mode enabled
+   - Module resolution: bundler
+   - Bun types included
+
+VERIFICATION:
+-------------
+✓ bun install completed successfully
+  - Resolved and downloaded 4 packages
+  - Saved lockfile
+  - Installed @opencode-ai/plugin@1.2.27
+  - Installed typescript@5.9.3
+
+✓ bun test runs without errors
+  Output: bun test v1.3.10 (30e609e0)
+  Status: 0 test files matching pattern (expected - no tests written yet)
+  No errors or crashes
+
+ACCEPTANCE CRITERIA:
+--------------------
+✓ hooks/package.json created with bun test configuration
+✓ cd hooks && bun test runs without errors
+
+NEXT STEPS:
+-----------
+- Create test files (*.test.ts) to add unit tests for opencode-rtk.ts
+- Tests should verify command rewriting logic

@@ -1,0 +1,31 @@
+F4 Scope Fidelity Check Evidence
+Date: 2026-03-20
+Repo: /home/ubuntu/projects/rtk
+
+Command: git diff --name-only
+Output:
+hooks/opencode-rtk.ts
+
+Supplementary check (for new/untracked files): git ls-files --others --exclude-standard
+Relevant output excerpts:
+- hooks/package.json
+- hooks/opencode-plugin.test.ts
+- hooks/bun.lock
+- hooks/tsconfig.json
+- hooks/node_modules/... (many files)
+- .sisyphus/... (multiple evidence/plan files)
+
+Expected scope:
+- hooks/package.json (new)
+- hooks/opencode-plugin.test.ts (new)
+- hooks/opencode-rtk.ts (modified)
+- src/init.rs not changed
+
+Findings:
+- src/init.rs is not present in git diff output (expected)
+- hooks/opencode-rtk.ts is modified (expected)
+- hooks/package.json and hooks/opencode-plugin.test.ts are present as untracked (expected new files)
+- Additional unexpected untracked files are present (hooks/bun.lock, hooks/tsconfig.json, hooks/node_modules/*, .sisyphus/*)
+
+VERDICT: REJECT
+Reason: scope contains unexpected file additions beyond the expected three hook files.

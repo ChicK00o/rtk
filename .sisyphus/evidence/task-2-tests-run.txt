@@ -1,0 +1,18 @@
+bun test v1.3.10 (30e609e0)
+
+opencode-plugin.test.ts:
+
+# Unhandled error between tests
+-------------------------------
+1 | })
+2 | {
+    ^
+SyntaxError: Export named 'isGptOrGeminiFamily' not found in module '/home/ubuntu/projects/rtk/hooks/opencode-rtk.ts'.
+      at loadAndEvaluateModule (2:1)
+-------------------------------
+
+
+ 0 pass
+ 1 fail
+ 1 error
+Ran 1 test across 1 file. [23.00ms]
