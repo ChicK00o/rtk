@@ -46,4 +46,4 @@ claudedocs
 
 # icm 
 .fastembed_cache/
-hooks/node_modules/
+node_modules/
